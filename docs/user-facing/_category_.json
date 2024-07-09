@@ -1,0 +1,8 @@
+{
+  "label": "User-facing solutions",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "description": "Pre-picked solutions for most common features of any application."
+  }
+}
