@@ -7,7 +7,7 @@ We're using bloc (mostly) as out state management. It provides us easy separatio
 3. Data (work with network or local data will be located here)
 
 We recommend to combine it with [freezed](https://pub.dev/packages/freezed) package. It reduce significant amount of boilerplate code and make it easier to read.
-Also it helps with generating code for models, but please be aware and don't use freezed generation to classes you want to store using hive, while this [issue](https://github.com/hivedb/hive/issues/795) is open.
+Also it helps with generating code for models.
 
 ## BLoC or Cubit?
 
@@ -56,6 +56,7 @@ class CounterState with _$CounterState {
   }) = _CounterState;
 }
 ```
+
 1) State is represented by object of a single class
 2) Fields are always the same for this state.
 
@@ -64,6 +65,7 @@ Which one is the best to use? None of them, it depends on logic you want to crea
 ## Freezed + BLoC, Events
 
 Creation of events should be always implemented using the factory method pattern, it makes it easy to read and reduce boilerplate code we had in previous version of template
+
 ```dart
 @freezed
 class CounterEvent with _$CounterEvent {
@@ -101,7 +103,6 @@ void _onSomeEvent(
 
 - Second one, is modification of current state with specified state class.
 
-
 ```dart
 // Class
 @freezed
@@ -134,6 +135,8 @@ We have to be really careful with this solution, to don't allow type cast except
 - Install [this](https://marketplace.visualstudio.com/items?itemName=FelixAngelov.bloc) VSCode extension to save your time while you're creating your blocs
 - Separate your models, API fetches, UI screens, and blocs/cubits by features
 - Write tests for each of your bloc/cubit
-* Put only one [BlocProvider](https://pub.dev/documentation/flutter_bloc/latest/flutter_bloc/BlocProvider-class.html) in the tree, then just use [BlocBuilder](https://pub.dev/documentation/flutter_bloc/latest/flutter_bloc/BlocBuilder-class.html) to have access to your bloc or cubit
+
+- Put only one [BlocProvider](https://pub.dev/documentation/flutter_bloc/latest/flutter_bloc/BlocProvider-class.html) in the tree, then just use [BlocBuilder](https://pub.dev/documentation/flutter_bloc/latest/flutter_bloc/BlocBuilder-class.html) to have access to your bloc or cubit
+
 - If your bloc contains some work with streams, don't forget to close it in [close()](https://pub.dev/documentation/bloc/latest/bloc/Bloc/close.html) method of your bloc
 - **Do** use [MultiBlocProvider](https://pub.dev/documentation/flutter_bloc/latest/flutter_bloc/MultiBlocProvider-class.html) in case you need to provide more than one bloc to your module
